@@ -1,6 +1,6 @@
 /******************************
 🧚🏻‍♂️项目名称：央视频 
-🧚🏻‍♂️脚本作者：ios151
+🧚🏻‍♂️脚本作者：
 🧚🏻‍♂️特别说明：公益项目请勿盗用
 🧚🏻‍♂️软件版本: 20240805最新版本
 🧚🏻‍♂️注意事项：仅供学习 请勿传播售卖
@@ -8,13 +8,13 @@
 
 [rewrite_local]
 
-^http:\/\/(liveinfo|bkliveinfo|playvv)\.ysp\.cctv\.cn\/(playvinfo\?.+|.*) url script-request-header https://raw.githubusercontent.com/Yu9191/Rewrite/main/yangshipin.js
+^http:\/\/(liveinfo|bkliveinfo|playvv)\.ysp\.cctv\.cn\/(playvinfo\?.+|.*) url script-request-header https://raw.githubusercontent.com/mist-whisper/JS/master/Yangshipin.js
 
 # 解锁[电视]内会员 如果登录提示错误的话 手动屏蔽下面这条
 &guid=[\w-]+&app_version=[\d\.]+&spadseg=\d&userid=(\d*)? url 302 &guid=f066be2cdf1c4f4893eb818de454313a&app_version=3.0.0.23522&spadseg=3&userid=234090757
 
-#^https:\/\/liveinfo\.ysp\.cctv\.cn\/ url script-request-header https://raw.githubusercontent.com/Yu9191/Rewrite/main/yangshipin.js
-#^https:\/\/m\.yangshipin\.cn\/static\/\w/\w+\/index\.html$ url script-request-header https://raw.githubusercontent.com/Yu9191/Rewrite/main/yangshipin.js
+#^https:\/\/liveinfo\.ysp\.cctv\.cn\/ url script-request-header https://raw.githubusercontent.com/mist-whisper/JS/master/Yangshipin.js
+#^https:\/\/m\.yangshipin\.cn\/static\/\w/\w+\/index\.html$ url script-request-header https://raw.githubusercontent.com/mist-whisper/JS/master/Yangshipin.js
 # > 央视频 去广告
 ^https?:\/\/cdn\.cmgadx\.com\/sdk\/pool\/.+\.json url reject-dict
 
