@@ -13,8 +13,8 @@
 [rewrite_local]
 
 # > 咪咕视频Vip会员
-^https?:\/\/(play|dis).*miguvideo.com\/(play|dis)(url|play)\/.*$ url script-response-body https://raw.githubusercontent.com/WeiGiegie/666/main/mgsp.js
-^https?:\/\/play.miguvideo.com\/playurl\/v1\/play\/playurl\?2Kvivid=true?.*=true$ url script-request-header https://raw.githubusercontent.com/WeiGiegie/666/main/mgspck.js
+^https?:\/\/(play|dis).*miguvideo.com\/(play|dis)(url|play)\/.*$ url script-response-body https://raw.githubusercontent.com/mist-whisper/JS/master/miguvideo.js
+^https?:\/\/play.miguvideo.com\/playurl\/v1\/play\/playurl\?2Kvivid=true?.*=true$ url script-request-header https://raw.githubusercontent.com/mist-whisper/JS/master/miguvideock.js
 # > 开屏广告
 ^https://.*miguvideo\.com/request/sdk url reject-200
 ^https://common-sc\.miguvideo\.com/task/v7/task-list/cmvideo/visitor url reject-200
