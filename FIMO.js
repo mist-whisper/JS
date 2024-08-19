@@ -1,4 +1,5 @@
 /*************************************
+引用地址：https://github.com/chxm1023/Rewrite/blob/main/fimo.js
 
 项目功能：Fimo-复古胶片相机 解锁Vip
 下载地址：https://t.cn/A6ouHsIk
