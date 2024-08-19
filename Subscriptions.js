@@ -13,7 +13,7 @@
 **************************************
 
 [rewrite_local]
-^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/mist-whisper/Surge/master/Scripts/Subscriptions/Subscriptions.js
+^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/mist-whisper/JS/master/Subscriptions.js
 
 [mitm]
 hostname = buy.itunes.apple.com
