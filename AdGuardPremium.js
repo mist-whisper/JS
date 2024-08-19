@@ -10,7 +10,7 @@
 
 [rewrite_local]
 
-^https:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt\/(.*?) url script-response-body https://raw.githubusercontent.com/mist-whisper/Surge/master/Scripts/AdGuard/AdGuard.js
+^https:\/\/mobile-api\.adguard\.org\/api\/.+\/ios_validate_receipt\/(.*?) url script-response-body https://raw.githubusercontent.com/mist-whisper/JS/master/AdGuardPremium.js
 
 [mitm]
 hostname = mobile-api.adguard.org
