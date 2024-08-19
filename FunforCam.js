@@ -1,15 +1,11 @@
 /*
-脚本功能：方弗相机（恢复购买）
-软件版本：1.7.1
-下载地址：https://apps.apple.com/app/id1621425556
 引用地址：https://github.com/Guding88/Script/blob/main/fangfuxiangji.js
-脚本作者：骨钉
-更新时间：2023-02-23
-使用声明：此脚本仅供学习与交流，请在下载使用24小时内删除！请勿在中国大陆转载与贩卖！
-*******************************
+
+方弗相机：https://apps.apple.com/app/id1621425556
+
 [rewrite_local]
-^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$) url script-response-body https://raw.githubusercontent.com/mist-whisper/JS/master/FunforCam.js
-^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$) url script-request-header https://raw.githubusercontent.com/mist-whisper/JS/master/FunforCam.js
+^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$) url script-response-body https://raw.githubusercontent.com/Guding88/Script/main/fangfuxiangji.js
+^https?:\/\/api\.revenuecat\.com\/v1\/(subscribers\/[^\/]+$|receipts$) url script-request-header https://raw.githubusercontent.com/Guding88/Script/main/fangfuxiangji.js
 
 [MITM]
 hostname = api.revenuecat.com
