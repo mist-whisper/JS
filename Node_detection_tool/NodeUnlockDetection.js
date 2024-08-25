@@ -1,6 +1,5 @@
 /*
  * 节点解锁查询
- * 引用地址：https://gitlab.com/lodepuly/vpn_tool/-/blob/master/Resource/Script/Node_detection_tool/NodeUnlockDetection.js?ref_type=heads
  * 感谢并修改自 https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js
  * 脚本功能：检查节点是否支持Dazn/Discovery/Param/Disney/Netflix/ChatGPT/YouTube解锁服务
  * 原作者：XIAO_KOP
