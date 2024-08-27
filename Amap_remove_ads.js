@@ -1,5 +1,5 @@
 /*
-引用地址https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/amap.js
+引用地址：https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/amap.js
 */
 // 2024-08-27 11:45
 
