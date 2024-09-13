@@ -1,7 +1,7 @@
 /*
 引用地址：https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/amap.js
 */
-// 2024-08-27 11:45
+// 2024-09-03 21:40
 
 const url = $request.url;
 if (!$response.body) $done({});
@@ -184,6 +184,10 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
   if (obj?.data?.memberInfo) {
     delete obj.data.memberInfo;
   }
+  if (obj?.data?.topMixedCard) {
+    // 顶部足迹、贡献卡片
+    delete obj.data.topMixedCard;
+  }
 } else if (url.includes("/shield/frogserver/aocs/updatable/")) {
   // 整体图层
   const items = [
@@ -333,6 +337,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     // "human_traffic", // 人流量情况 有统计图
     "image_banner",
     "kaMarketingCampaign", // 附近品牌动态
+    "kaProductMixServiceShelf", // 骑手送药上门
     "ka_not_enter", // 移动办卡 套餐服务
     "legSameIndustryRecEntrance", // 全城最热景点推荐
     "legal_document", // 房源法律信息
@@ -345,6 +350,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "movie_info", // 优惠购票 景点宣传片
     "multi_page_anchor", // 二级导航菜单 门票 评论 推荐
     // "navbarMore", // 右上角三点
+    "nearbyGoodCar", // 附近热门新车
     "nearbyRecommendModule", // 周边推荐
     "nearby_house",
     "nearby_new_house_estate",
@@ -367,6 +373,8 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "packageShelf", // 附近酒景推荐
     "parentBizRec",
     "parentPoiRecEntrance", // 所在商圈
+    "platformCustomerCommonModule", // 众安保险赔付
+    "platformCustomerComplianceInfo", // 保险公司信息
     "poiDetailWaterFeed", // 附近景点瀑布流 新
     "poiDetailWaterFeedTitle", // 更多人气好去处 新
     "poster_banner",
@@ -410,6 +418,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     // "shop_news",
     "smallListBizRec", // 周边热门酒店
     "smallOrListBizRec",
+    "surroundHouseTab", //周边房源
     "surroundOldSellHouse", // 同城二手房
     "surroundRentHouse", // 附近租房
     "surround_facility",
@@ -419,6 +428,7 @@ if (url.includes("/aos/perception/publicTravel/beforeNavi")) {
     "surround_renthouse",
     "surround_rentoffice",
     "surround_selloffice",
+    "thirdparty_info", // 第三方信息
     // "traffic", // 交通出行 地铁站 公交站 停车场
     "travelGuideRec", // 人气景点 路线 购票
     "uploadBar",
