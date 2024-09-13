@@ -1,5 +1,7 @@
-// 2024-07-27 22:30
-// 原始地址：https://github.com/RuCu6/QuanX/blob/main/Scripts/zhihu.js
+/*
+引用地址：https://github.com/RuCu6/QuanX/blob/main/Scripts/zhihu.js
+*/
+// 2024-07-29 16:15
 
 if (!$response.body) $done({});
 const url = $request.url;
@@ -148,7 +150,7 @@ if (url.includes("/answers/v2/") || url.includes("/articles/v2/")) {
 } else if (url.includes("/root/tab")) {
   // 首页顶部标签页
   if (obj?.tab_list?.length > 0) {
-    obj.tab_list = obj.tab_list.filter((i) => !["想法", "故事"]?.includes(i?.tab_name));
+    obj.tab_list = obj.tab_list.filter((i) => !["故事", "活动", "想法"]?.includes(i?.tab_name));
   }
 } else if (url.includes("/topstory/hot-lists/everyone-seeing")) {
   // 热榜信息流
