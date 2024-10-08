@@ -1,5 +1,5 @@
+// 引用地址：https://github.com/RuCu6/Loon/blob/main/Scripts/jingdong.js
 // 2024-04-18 17:45
-// 引用地址：https://github.com/RuCu6/QuanX/blob/main/Scripts/jingdong.js
 
 const url = $request.url;
 if (!$response.body) $done({});
