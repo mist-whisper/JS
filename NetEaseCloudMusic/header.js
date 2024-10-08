@@ -1,4 +1,4 @@
-//引用地址：https://raw.githubusercontent.com/RuCu6/Loon/main/Scripts/break/header.js
+// 引用地址：https://raw.githubusercontent.com/RuCu6/Loon/main/Scripts/break/header.js
 // 2024-10-08 02:15
 
 const url = $request.url;
