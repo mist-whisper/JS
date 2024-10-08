@@ -1,6 +1,4 @@
-/*
-引用地址https://raw.githubusercontent.com/RuCu6/QuanX/main/Scripts/xiaohongshu.js
-*/
+// 引用地址：https://github.com/RuCu6/Loon/blob/main/Scripts/xiaohongshu.js
 // 2023-12-20 19:00
 
 const url = $request.url;
