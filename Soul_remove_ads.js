@@ -1,24 +1,11 @@
 // https://github.com/RuCu6/Loon/blob/main/Scripts/soul.js
-// 2024-09-03 23:40
+// 2024-10-15 10:20
 
 const url = $request.url;
 if (!$response || !$response.body) $done({});
 let obj = JSON.parse($response.body);
 
-if (
-  url.includes("/furion/position/content") ||
-  url.includes("/hot/soul/rank") ||
-  url.includes("/mobile/app/version/queryIos") ||
-  url.includes("/official/scene/module") ||
-  url.includes("/post/gift/list") ||
-  url.includes("/post/homepage/guide/card") ||
-  url.includes("/teenager/config") ||
-  url.includes("/winterfell/v2/getIpByDomain")
-) {
-  if (obj?.data) {
-    delete obj.data;
-  }
-} else if (url.includes("/chat/limitInfo")) {
+if (url.includes("/chat/limitInfo")) {
   // 私聊限制
   if (obj?.data?.limit) {
     obj.data.limit = false;
