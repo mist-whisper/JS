@@ -1,29 +1,24 @@
-// https://github.com/RuCu6/Loon/blob/main/Scripts/bilibili/json.js
-// 2024-10-09 01:35
+// 脚本引用 https://raw.githubusercontent.com/RuCu6/Loon/main/Scripts/bilibili/json.js
+// 2024-11-08 12:30
 
 const url = $request.url;
 if (!$response.body) $done({});
 let obj = JSON.parse($response.body);
 
-if (url.includes("/x/resource/show/skin")) {
-  // 皮肤推送
-  if (obj?.data?.common_equip) {
-    delete obj.data.common_equip;
-  }
-} else if (url.includes("/x/resource/show/tab/v2")) {
+if (url.includes("/x/resource/show/tab/v2")) {
   // 底部选项卡
   if (obj?.data?.bottom?.length > 0) {
     const sortLists = ["首页", "动态", "我的"];
     obj.data.bottom = obj.data.bottom
-      。filter((i) => sortLists?.includes(i?.name))
-      。sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
+      .filter((i) => sortLists?.includes(i?.name))
+      .sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
   }
   // 首页导航栏
   if (obj?.data?.tab?.length > 0) {
-    const sortLists = ["推荐", "热门", "影视", "动画"];
+    const sortLists = ["推荐", "热门", "动画", "影视", "直播"];
     obj.data.tab = obj.data.tab
-      。filter((i) => sortLists?.includes(i?.name))
-      。sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
+      .filter((i) => sortLists?.includes(i?.name))
+      .sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
   }
   // 右上角按钮
   if (obj?.data?.top?.length > 0) {
@@ -32,16 +27,22 @@ if (url.includes("/x/resource/show/skin")) {
       obj.data.top[0].pos = 1;
     }
   }
-} else if (url.includes("/x/resource/top/activity")) {
-  // 首页右上角活动
-  obj = { code: -404, message: "啥都木有", ttl: 1, data: null };
-} else if (url.includes("/x/v2/account/mine?")) {
+} else if (url.includes("/x/v2/account/mine")) {
   // 我的页面
-  const del = ["rework_v1", "vip_section", "vip_section_v2"];
+  const del = ["ipad_upper_sections", "rework_v1", "vip_section", "vip_section_v2"];
   for (let i of del) {
-    // 不必要项目
-    delete obj.data[i];
+    delete obj.data[i]; // 不必要项目
   }
+  // iPad 我的页面
+  if (obj?.data?.ipad_recommend_sections?.length > 0) {
+    const itemList = [789, 790]; // 789我的关注 790我的消息 791我的钱包 792直播中心 793大会员 794我的课程 2542我的游戏
+    obj.data.ipad_recommend_sections = obj.data.ipad_recommend_sections.filter((i) => itemList?.includes(i.id));
+  }
+  if (obj?.data?.ipad_more_sections?.length > 0) {
+    const itemList = [797, 798]; // 797我的客服 798设置 1070青少年守护
+    obj.data.ipad_more_sections = obj.data.ipad_more_sections.filter((i) => itemList?.includes(i.id));
+  }
+  // iPhone 我的页面
   if (obj?.data?.sections_v2?.length > 0) {
     let newSects = [];
     for (let item of obj.data.sections_v2) {
@@ -52,19 +53,18 @@ if (url.includes("/x/resource/show/skin")) {
         if (item?.style === 1 || item?.style === 2) {
           if (item?.title) {
             if (item?.title === "创作中心" || item?.title === "推荐服务") {
-              // 创作中心 推荐服务
-              continue;
+              continue; // 创作中心 推荐服务
             } else if (item?.title === "更多服务") {
-              delete item.title;
+              if (item?.title) {
+                delete item.title;
+              }
               if (item?.items?.length > 0) {
                 let newItems = [];
                 for (let i of item.items) {
                   if (/user_center\/feedback/g.test(i?.uri)) {
-                    // 联系客服
-                    newItems.push(i);
+                    newItems.push(i); // 联系客服
                   } else if (/user_center\/setting/g.test(i?.uri)) {
-                    // 设置
-                    newItems.push(i);
+                    newItems.push(i); // 设置
                   } else {
                     continue;
                   }
@@ -74,8 +74,7 @@ if (url.includes("/x/resource/show/skin")) {
             }
           }
         } else {
-          // 其他style
-          continue;
+          continue; // 其他style
         }
       }
       newSects.push(item);
@@ -103,22 +102,6 @@ if (url.includes("/x/resource/show/skin")) {
       obj.data.vip.role = 3;
     }
   }
-} else if (url.includes("/x/v2/account/mine/ipad")) {
-  // ipad我的页面
-  if (obj?.data?.ipad_upper_sections) {
-    // 投稿 创作首页 稿件管理 有奖活动
-    delete obj.data.ipad_upper_sections;
-  }
-  if (obj?.data?.ipad_recommend_sections?.length > 0) {
-    // 789我的关注 790我的消息 791我的钱包 792直播中心 793大会员 794我的课程 2542我的游戏
-    const itemList = [789, 790];
-    obj.data.ipad_recommend_sections = obj.data.ipad_recommend_sections.filter((i) => itemList?.includes(i.id));
-  }
-  if (obj?.data?.ipad_more_sections?.length > 0) {
-    // 797我的客服 798设置 1070青少年守护
-    const itemList = [797, 798];
-    obj.data.ipad_more_sections = obj.data.ipad_more_sections.filter((i) => itemList?.includes(i.id));
-  }
 } else if (url.includes("/x/v2/account/myinfo")) {
   // 非会员开启会员专属清晰度
   if (obj?.data?.vip) {
@@ -129,27 +112,40 @@ if (url.includes("/x/resource/show/skin")) {
       obj.data.vip.role = 3;
     }
   }
-} else if (url.includes("/x/v2/feed/index?")) {
+} else if (url.includes("/x/v2/feed/index")) {
   // 首页推荐信息流
+  if (obj?.data?.config?.toast?.has_toast) {
+    obj.data.config.toast.has_toast = false; // 首页刷新通知
+  }
   if (obj?.data?.items?.length > 0) {
     // 白名单
-    obj.data.items = obj.data.items.filter((i) => i?.card_goto === "av");
-  }
-} else if (url.includes("/x/v2/feed/index/story")) {
-  // 竖屏模式信息流
-  if (obj?.data?.items?.length > 0) {
-    // vertical_live 直播内容
-    // vertical_pgc 大会员专享
     let newItems = [];
     for (let item of obj.data.items) {
-      if (item?.hasOwnProperty("ad_info")) {
-        continue;
-      } else if (["vertical_ad_av", "vertical_live", "vertical_pgc"]?.includes(item?.card_goto)) {
-        continue;
+      if (item?.goto === "av") {
+        // 常规模式
+        if (item?.card_goto === "av") {
+          newItems.push(item);
+        } else {
+          continue;
+        }
+      } else if (item?.goto === "vertical_av") {
+        // 竖屏模式
+        if (item?.card_goto === "av" || item?.card_goto === "vertical_av") {
+          if (item?.creative_entrance) {
+            item.creative_entrance = {}; // 推荐话题搜索框
+          }
+          if (item?.scroll_guide) {
+            item.scroll_guide = {}; // 上滑观看提示
+          }
+          if (item?.story_cart_icon) {
+            item.story_cart_icon = {}; // 相关话题图标
+          }
+          newItems.push(item);
+        } else {
+          continue;
+        }
       } else {
-        delete item.creative_entrance; // 推荐话题搜索框
-        delete item.story_cart_icon; // 多余图标
-        newItems.push(item);
+        continue;
       }
     }
     obj.data.items = newItems;
