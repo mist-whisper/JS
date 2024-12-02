@@ -10,15 +10,15 @@ if (url.includes("/x/resource/show/tab/v2")) {
   if (obj?.data?.bottom?.length > 0) {
     const sortLists = ["首页", "动态", "我的"];
     obj.data.bottom = obj.data.bottom
-      。filter((i) => sortLists?.includes(i?.name))
-      。sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
+      .filter((i) => sortLists?.includes(i?.name))
+      .sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
   }
   // 首页导航栏
   if (obj?.data?.tab?.length > 0) {
     const sortLists = ["推荐", "热门", "动画", "影视", "直播"];
     obj.data.tab = obj.data.tab
-      。filter((i) => sortLists?.includes(i?.name))
-      。sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
+      .filter((i) => sortLists?.includes(i?.name))
+      .sort((a, b) => sortLists.indexOf(a?.name) - sortLists.indexOf(b?.name));
   }
   // 右上角按钮
   if (obj?.data?.top?.length > 0) {
